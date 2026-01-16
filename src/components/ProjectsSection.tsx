@@ -1,9 +1,33 @@
-import { ExternalLink, Github, Star } from 'lucide-react';
+import { ExternalLink, Github, Star, Play, Upload } from 'lucide-react';
+import { useState } from 'react';
 import projectNlp from '@/assets/project-nlp.jpg';
 import projectAnomaly from '@/assets/project-anomaly.jpg';
 import projectCv from '@/assets/project-cv.jpg';
+import projectDominoAi from '@/assets/project-domino-ai.png';
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  featured: boolean;
+  metrics: string;
+  github: string;
+  demo: string;
+  demoVideo?: string;
+}
+
+const initialProjects: Project[] = [
+  {
+    title: 'Domino AI',
+    description: 'An advanced AI-powered knowledge system for mastering Artificial Intelligence concepts with interactive learning sequences and academic modules.',
+    image: projectDominoAi,
+    tags: ['AI Education', 'NLP', 'React', 'Vercel'],
+    featured: true,
+    metrics: 'Interactive learning, 6+ modules',
+    github: 'https://github.com/mbalenhle0102',
+    demo: 'https://domino-ai.vercel.app',
+  },
   {
     title: 'Intelligent Document Analyzer',
     description: 'An NLP-powered system that extracts, classifies, and summarizes information from unstructured documents using transformer models.',
@@ -11,7 +35,7 @@ const projects = [
     tags: ['NLP', 'Transformers', 'Python', 'FastAPI'],
     featured: true,
     metrics: '95% accuracy, 10k+ docs processed',
-    github: 'https://github.com',
+    github: 'https://github.com/mbalenhle0102',
     demo: 'https://demo.example.com',
   },
   {
@@ -21,7 +45,7 @@ const projects = [
     tags: ['Deep Learning', 'Kafka', 'TensorFlow', 'MLOps'],
     featured: true,
     metrics: '99.2% precision, <100ms latency',
-    github: 'https://github.com',
+    github: 'https://github.com/mbalenhle0102',
     demo: 'https://demo.example.com',
   },
   {
@@ -31,12 +55,26 @@ const projects = [
     tags: ['Computer Vision', 'PyTorch', 'Docker', 'Edge AI'],
     featured: true,
     metrics: '98% recall, deployed on edge',
-    github: 'https://github.com',
+    github: 'https://github.com/mbalenhle0102',
     demo: 'https://demo.example.com',
   },
 ];
 
 const ProjectsSection = () => {
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
+  const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
+
+  const handleVideoUpload = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const videoUrl = URL.createObjectURL(file);
+      setProjects(prev => prev.map((project, i) => 
+        i === index ? { ...project, demoVideo: videoUrl } : project
+      ));
+    }
+    setUploadingIndex(null);
+  };
+
   return (
     <section id="projects" className="py-24 relative">
       <div className="section-container">
@@ -52,20 +90,28 @@ const ProjectsSection = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <article
               key={project.title}
               className="project-card flex flex-col"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              {/* Project Image */}
+              {/* Project Image/Video */}
               <div className="relative aspect-video rounded-lg overflow-hidden mb-5 bg-secondary">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                {project.demoVideo ? (
+                  <video
+                    src={project.demoVideo}
+                    controls
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                )}
                 {project.featured && (
                   <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/90 text-primary-foreground text-xs font-medium">
                     <Star size={12} fill="currentColor" />
@@ -101,7 +147,7 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex items-center gap-3 pt-4 border-t border-border/50">
+                <div className="flex items-center gap-3 pt-4 border-t border-border/50 flex-wrap">
                   <a
                     href={project.github}
                     target="_blank"
@@ -120,6 +166,27 @@ const ProjectsSection = () => {
                     <ExternalLink size={16} />
                     Live Demo
                   </a>
+                  
+                  {/* Upload Demo Video */}
+                  <label className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+                    <input
+                      type="file"
+                      accept="video/*"
+                      className="hidden"
+                      onChange={(e) => handleVideoUpload(index, e)}
+                    />
+                    {project.demoVideo ? (
+                      <>
+                        <Play size={16} className="text-emerald-400" />
+                        <span className="text-emerald-400">Video Added</span>
+                      </>
+                    ) : (
+                      <>
+                        <Upload size={16} />
+                        Upload Demo
+                      </>
+                    )}
+                  </label>
                 </div>
               </div>
             </article>
@@ -129,7 +196,7 @@ const ProjectsSection = () => {
         {/* View All Link */}
         <div className="text-center mt-12">
           <a
-            href="https://github.com"
+            href="https://github.com/mbalenhle0102"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:border-primary/50 text-foreground hover:text-primary transition-all"
