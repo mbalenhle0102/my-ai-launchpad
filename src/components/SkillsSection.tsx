@@ -102,6 +102,12 @@ const SkillsSection = () => {
               { name: 'Introduction to Artificial Intelligence (AI)', issuer: 'IBM', url: 'https://coursera.org/verify/FK73DT2W75NY' },
               { name: 'AI Essentials', issuer: 'Intel', url: 'https://coursera.org/verify/MPPSSF6M5CFU' },
               { name: 'Python for Data Science, AI & Development', issuer: 'IBM', url: 'https://coursera.org/verify/QDIFKKXJSXVL' },
+              { name: 'Trustworthy AI: Managing Bias, Ethics, and Accountability', issuer: 'Johns Hopkins University', url: 'https://coursera.org/verify/VBXM9VSA25S7' },
+              { name: 'Building AI Powered Chatbots Without Programming', issuer: 'IBM', url: 'https://coursera.org/verify/WEMVKSCB826I' },
+              { name: 'AI Foundations: Prompt Engineering with ChatGPT', issuer: 'Arizona State University', url: 'https://coursera.org/verify/YCRVFPWOU7XB' },
+              { name: 'Generative AI for Everyone', issuer: 'DeepLearning.AI', url: 'https://coursera.org/verify/YQL8J5Y10VY5' },
+              { name: 'Introduction to Generative AI', issuer: 'Google Cloud', url: 'https://coursera.org/verify/YT5U7IWAHHO6' },
+              { name: 'Artificial Intelligence on Microsoft Azure', issuer: 'Microsoft', url: 'https://coursera.org/verify/ZAC3RRQH7RD1' },
             ].map((cert) => (
               <a
                 key={cert.name}
