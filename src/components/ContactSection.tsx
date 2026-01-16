@@ -39,20 +39,33 @@ const ContactSection = () => {
               
               <div className="space-y-4">
                 <a
-                  href="mailto:hello@example.com"
+                  href="mailto:mbalijiwa@gmail.com"
                   className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors group"
                 >
                   <div className="p-2.5 rounded-lg bg-primary/10">
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground">Email</div>
-                    <div className="text-foreground group-hover:text-primary transition-colors">hello@example.com</div>
+                    <div className="text-sm text-muted-foreground">Personal Email</div>
+                    <div className="text-foreground group-hover:text-primary transition-colors">mbalijiwa@gmail.com</div>
                   </div>
                 </a>
 
                 <a
-                  href="https://linkedin.com"
+                  href="mailto:innocentia.jiwa@capaciti.org.za"
+                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors group"
+                >
+                  <div className="p-2.5 rounded-lg bg-primary/10">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-muted-foreground">Work Email</div>
+                    <div className="text-foreground group-hover:text-primary transition-colors">innocentia.jiwa@capaciti.org.za</div>
+                  </div>
+                </a>
+
+                <a
+                  href="http://www.linkedin.com/in/innocentia-jiwa-604b82135"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors group"
@@ -62,12 +75,12 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">LinkedIn</div>
-                    <div className="text-foreground group-hover:text-primary transition-colors">linkedin.com/in/username</div>
+                    <div className="text-foreground group-hover:text-primary transition-colors">linkedin.com/in/innocentia-jiwa-604b82135</div>
                   </div>
                 </a>
 
                 <a
-                  href="https://github.com"
+                  href="https://github.com/mbalenhle0102"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors group"
@@ -77,7 +90,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">GitHub</div>
-                    <div className="text-foreground group-hover:text-primary transition-colors">github.com/username</div>
+                    <div className="text-foreground group-hover:text-primary transition-colors">github.com/mbalenhle0102</div>
                   </div>
                 </a>
 
