@@ -100,7 +100,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Location</div>
-                    <div className="text-foreground">Open to Remote & Relocation</div>
+                    <div className="text-foreground">781 Mabona Street, Twala Section, Katlehong, 1431</div>
                   </div>
                 </div>
               </div>
