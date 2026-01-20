@@ -2,6 +2,7 @@ import { ExternalLink, Github, Star, Play, Upload, Filter } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import projectDominoAi from '@/assets/project-domino-ai.png';
 import projectResumecraft from '@/assets/project-resumecraft.png';
+import projectEdugenius from '@/assets/project-edugenius.png';
 
 interface Project {
   title: string;
@@ -35,6 +36,16 @@ const initialProjects: Project[] = [
     metrics: 'Interactive learning, 6+ modules',
     github: 'https://github.com/mbalenhle0102',
     demo: 'https://domino-ai.vercel.app',
+  },
+  {
+    title: 'EduGenius AI',
+    description: 'An AI-powered curriculum designer that generates lesson plans, study guides, exams, and concept explanations with customizable teaching styles and grade levels.',
+    image: projectEdugenius,
+    tags: ['AI Education', 'LLM', 'React', 'Vercel'],
+    featured: true,
+    metrics: '5 AI tools, Multi-grade support',
+    github: 'https://github.com/mbalenhle0102',
+    demo: 'https://edu-genius-ai-orpin.vercel.app',
   },
 ];
 
