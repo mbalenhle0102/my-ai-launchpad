@@ -1,8 +1,5 @@
 import { ExternalLink, Github, Star, Play, Upload, Filter } from 'lucide-react';
 import { useState, useMemo } from 'react';
-import projectNlp from '@/assets/project-nlp.jpg';
-import projectAnomaly from '@/assets/project-anomaly.jpg';
-import projectCv from '@/assets/project-cv.jpg';
 import projectDominoAi from '@/assets/project-domino-ai.png';
 import projectResumecraft from '@/assets/project-resumecraft.png';
 
@@ -38,36 +35,6 @@ const initialProjects: Project[] = [
     metrics: 'Interactive learning, 6+ modules',
     github: 'https://github.com/mbalenhle0102',
     demo: 'https://domino-ai.vercel.app',
-  },
-  {
-    title: 'Intelligent Document Analyzer',
-    description: 'An NLP-powered system that extracts, classifies, and summarizes information from unstructured documents using transformer models.',
-    image: projectNlp,
-    tags: ['NLP', 'Transformers', 'Python', 'FastAPI'],
-    featured: true,
-    metrics: '95% accuracy, 10k+ docs processed',
-    github: 'https://github.com/mbalenhle0102',
-    demo: 'https://demo.example.com',
-  },
-  {
-    title: 'Real-time Anomaly Detection',
-    description: 'A streaming ML pipeline that detects anomalies in IoT sensor data using autoencoders and statistical methods.',
-    image: projectAnomaly,
-    tags: ['Deep Learning', 'Kafka', 'TensorFlow', 'MLOps'],
-    featured: true,
-    metrics: '99.2% precision, <100ms latency',
-    github: 'https://github.com/mbalenhle0102',
-    demo: 'https://demo.example.com',
-  },
-  {
-    title: 'Computer Vision Quality Control',
-    description: 'CNN-based defect detection system for manufacturing, reducing manual inspection time by 80%.',
-    image: projectCv,
-    tags: ['Computer Vision', 'PyTorch', 'Docker', 'Edge AI'],
-    featured: true,
-    metrics: '98% recall, deployed on edge',
-    github: 'https://github.com/mbalenhle0102',
-    demo: 'https://demo.example.com',
   },
 ];
 
