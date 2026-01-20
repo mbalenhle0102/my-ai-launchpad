@@ -48,7 +48,7 @@ const skillCategories = [
     icon: BarChart3,
     color: 'text-cyan-400',
     bgColor: 'bg-cyan-400/10',
-    skills: ['Data Wrangling', 'ETL Pipelines', 'Data Quality', 'Data Governance', 'Big Data Analytics', 'Data Storytelling'],
+    skills: ['Apache Airflow', 'dbt', 'Great Expectations', 'Tableau', 'Power BI', 'Looker'],
   },
 ];
 
