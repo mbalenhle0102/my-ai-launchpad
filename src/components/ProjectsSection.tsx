@@ -1,5 +1,5 @@
-import { ExternalLink, Github, Star, Play, Upload } from 'lucide-react';
-import { useState } from 'react';
+import { ExternalLink, Github, Star, Play, Upload, Filter } from 'lucide-react';
+import { useState, useMemo } from 'react';
 import projectNlp from '@/assets/project-nlp.jpg';
 import projectAnomaly from '@/assets/project-anomaly.jpg';
 import projectCv from '@/assets/project-cv.jpg';
@@ -73,17 +73,32 @@ const initialProjects: Project[] = [
 
 const ProjectsSection = () => {
   const [projects, setProjects] = useState<Project[]>(initialProjects);
-  const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
+  const [activeFilter, setActiveFilter] = useState<string>('All');
+
+  // Extract unique tags from all projects
+  const allTags = useMemo(() => {
+    const tags = new Set<string>();
+    initialProjects.forEach(project => {
+      project.tags.forEach(tag => tags.add(tag));
+    });
+    return ['All', ...Array.from(tags).sort()];
+  }, []);
+
+  // Filter projects based on selected tag
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'All') return projects;
+    return projects.filter(project => project.tags.includes(activeFilter));
+  }, [projects, activeFilter]);
 
   const handleVideoUpload = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const videoUrl = URL.createObjectURL(file);
-      setProjects(prev => prev.map((project, i) => 
-        i === index ? { ...project, demoVideo: videoUrl } : project
+      const projectTitle = filteredProjects[index].title;
+      setProjects(prev => prev.map((project) => 
+        project.title === projectTitle ? { ...project, demoVideo: videoUrl } : project
       ));
     }
-    setUploadingIndex(null);
   };
 
   return (
@@ -100,9 +115,27 @@ const ProjectsSection = () => {
           </p>
         </div>
 
+        {/* Filter Tags */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setActiveFilter(tag)}
+              className={`px-4 py-2 text-sm rounded-full transition-all duration-300 ${
+                activeFilter === tag
+                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
+                  : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+              }`}
+            >
+              {tag === 'All' && <Filter size={14} className="inline mr-1.5" />}
+              {tag}
+            </button>
+          ))}
+        </div>
+
         {/* Projects Grid */}
         <div className="grid lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <article
               key={project.title}
               className="project-card flex flex-col"
