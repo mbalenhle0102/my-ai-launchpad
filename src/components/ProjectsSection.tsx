@@ -4,6 +4,7 @@ import projectNlp from '@/assets/project-nlp.jpg';
 import projectAnomaly from '@/assets/project-anomaly.jpg';
 import projectCv from '@/assets/project-cv.jpg';
 import projectDominoAi from '@/assets/project-domino-ai.png';
+import projectResumecraft from '@/assets/project-resumecraft.png';
 
 interface Project {
   title: string;
@@ -18,6 +19,16 @@ interface Project {
 }
 
 const initialProjects: Project[] = [
+  {
+    title: 'ResumeCraft',
+    description: 'A modern resume builder application with real-time preview, customizable sections, and PDF export functionality for creating professional resumes.',
+    image: projectResumecraft,
+    tags: ['React', 'TypeScript', 'PDF Export', 'UI/UX'],
+    featured: true,
+    metrics: 'Real-time preview, PDF export',
+    github: 'https://github.com/mbalenhle0102/ResumeCraft',
+    demo: 'https://resume-craft-zeta.vercel.app',
+  },
   {
     title: 'Domino AI',
     description: 'An advanced AI-powered knowledge system for mastering Artificial Intelligence concepts with interactive learning sequences and academic modules.',
