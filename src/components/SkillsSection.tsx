@@ -1,4 +1,4 @@
-import { Brain, Database, Code, Cloud, BarChart3, Wrench } from 'lucide-react';
+import { Brain, Database, Code, Cloud, BarChart3, Wrench, GraduationCap } from 'lucide-react';
 
 const skillCategories = [
   {
@@ -99,8 +99,45 @@ const SkillsSection = () => {
           })}
         </div>
 
-        {/* Certifications */}
+        {/* Academic Background */}
         <div className="mt-16">
+          <h3 className="text-xl font-semibold text-center mb-8">Academic Background</h3>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+            <div className="glass-card p-6 hover-glow transition-all">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <GraduationCap className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Bachelor of Science in Computer Science</h4>
+                  <p className="text-muted-foreground text-sm mt-1">University Name</p>
+                  <p className="text-muted-foreground text-xs mt-1">Graduated: 2023</p>
+                  <p className="text-muted-foreground text-sm mt-2">
+                    Focused on Machine Learning, Data Structures, and Algorithms. Completed senior thesis on deep learning applications.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="glass-card p-6 hover-glow transition-all">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-accent/10">
+                  <GraduationCap className="w-6 h-6 text-accent" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Relevant Coursework</h4>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {['Machine Learning', 'Deep Learning', 'Statistics', 'Linear Algebra', 'Data Mining', 'Computer Vision', 'NLP', 'Algorithms'].map((course) => (
+                      <span key={course} className="skill-tag text-xs">{course}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Certifications */}
+        <div>
           <h3 className="text-xl font-semibold text-center mb-8">Certifications & Credentials</h3>
           <div className="flex flex-wrap justify-center gap-4">
             {[
