@@ -20,17 +20,10 @@ const AboutSection = () => {
           <div className="space-y-6">
             <div className="glass-card p-6">
               <h3 className="text-xl font-semibold mb-4 text-foreground">Professional Biography</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                I'm an AI/ML Engineer with a passion for developing intelligent systems that solve 
-                complex problems. With a strong foundation in mathematics, statistics, and computer 
-                science, I specialize in building end-to-end machine learning pipelines and deploying 
-                scalable AI solutions.
-              </p>
               <p className="text-muted-foreground leading-relaxed">
-                My journey in AI began with a fascination for how machines can learn and adapt. 
-                Today, I combine deep technical expertise with a keen understanding of business 
-                needs to deliver solutions that drive real impact. I'm particularly interested in 
-                natural language processing, computer vision, and MLOps.
+                I am an entry-level AI/ML Engineer with a foundation in Python, machine learning, and data analysis. 
+                I enjoy transforming data into practical solutions and building intelligent systems that solve real-world 
+                problems. I am eager to learn, grow, and contribute to innovative AI projects.
               </p>
             </div>
 
@@ -61,8 +54,9 @@ const AboutSection = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">Career Objective</h4>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    Seeking challenging AI/ML roles where I can leverage my expertise in deep learning 
-                    and data science to build innovative solutions that positively impact millions of users.
+                    To secure a junior or entry-level AI/Machine Learning role where I can apply my skills in Python, 
+                    data analysis, and machine learning, supported by an NQF Level 4 qualification in IT Technical Support, 
+                    while continuing to learn, grow professionally, and contribute to impactful, real-world solutions.
                   </p>
                 </div>
               </div>
@@ -76,8 +70,8 @@ const AboutSection = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">Core Philosophy</h4>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    I believe in responsible AI development that prioritizes ethics, transparency, 
-                    and fairness. Every model I build is designed with real-world implications in mind.
+                    I believe that technology should be practical, ethical and impactful. Through continuous learning 
+                    and collaboration, I strive to build intelligent solutions that solve real-world problems.
                   </p>
                 </div>
               </div>
@@ -91,8 +85,8 @@ const AboutSection = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">Future Goals</h4>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    Continuously expanding my knowledge in generative AI, LLMs, and autonomous systems 
-                    while contributing to open-source projects and the AI research community.
+                    To continuously improve my AI and machine learning skills, gain industry experience, 
+                    and build a successful career in the technology field.
                   </p>
                 </div>
               </div>
