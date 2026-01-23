@@ -20,9 +20,9 @@ const HeroSection = () => {
 
         {/* Main Heading */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-up opacity-0 animation-delay-200">
-          <span className="text-foreground">AI/ML Engineer</span>
+          <span className="text-foreground">Entry-level AI/ML Engineer</span>
           <br />
-          <span className="gradient-text">Building Intelligent Solutions</span>
+          <span className="gradient-text">Python, Machine Learning & Data Analysis</span>
         </h1>
         
         <p className="text-xl md:text-2xl font-medium text-foreground mb-6 animate-fade-up opacity-0 animation-delay-300">
