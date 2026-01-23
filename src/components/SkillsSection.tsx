@@ -116,11 +116,11 @@ const SkillsSection = () => {
                   <GraduationCap className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Bachelor of Science in Computer Science</h4>
-                  <p className="text-muted-foreground text-sm mt-1">University Name</p>
-                  <p className="text-muted-foreground text-xs mt-1">Graduated: 2023</p>
+                  <h4 className="font-semibold text-foreground">NQF Level 4: IT Technical Support</h4>
+                  <p className="text-muted-foreground text-sm mt-1">Jonda Learning Academy</p>
+                  <p className="text-muted-foreground text-xs mt-1">NLRD No: 78964</p>
                   <p className="text-muted-foreground text-sm mt-2">
-                    Focused on Machine Learning, Data Structures, and Algorithms. Completed senior thesis on deep learning applications.
+                    Comprehensive training in hardware troubleshooting, software installation, network configuration, and IT support services.
                   </p>
                 </div>
               </div>
@@ -131,12 +131,13 @@ const SkillsSection = () => {
                   <GraduationCap className="w-6 h-6 text-accent" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Relevant Coursework</h4>
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {['Machine Learning', 'Deep Learning', 'Statistics', 'Linear Algebra', 'Data Mining', 'Computer Vision', 'NLP', 'Algorithms'].map((course) => (
-                      <span key={course} className="skill-tag text-xs">{course}</span>
-                    ))}
-                  </div>
+                  <h4 className="font-semibold text-foreground">NQF Level 4: Project Management</h4>
+                  <p className="text-muted-foreground text-sm mt-1">Services SETA</p>
+                  <p className="text-muted-foreground text-xs mt-1">SAQA ID: 50080 • Credits: 152</p>
+                  <p className="text-muted-foreground text-xs mt-1">Certificate No: 00360706 • Issued: January 2025</p>
+                  <p className="text-muted-foreground text-sm mt-2">
+                    Further Education and Training Certificate in Project Management principles and methodologies.
+                  </p>
                 </div>
               </div>
             </div>
@@ -148,7 +149,8 @@ const SkillsSection = () => {
           <h3 className="text-xl font-semibold text-center mb-8">Certifications & Credentials</h3>
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              { name: 'NQF Level 4: IT Technical Support', issuer: 'MICT SETA (NLRD No. 78964)', url: '#', featured: true },
+              { name: 'NQF Level 4: IT Technical Support', issuer: 'Jonda Learning Academy (NLRD No. 78964)', url: '#', featured: true },
+              { name: 'NQF Level 4: Project Management', issuer: 'Services SETA (SAQA ID: 50080)', url: '#', featured: true },
               { name: 'AI For Everyone', issuer: 'DeepLearning.AI', url: 'https://coursera.org/verify/6Z8TDHYS05AB' },
               { name: 'Generative AI with Large Language Models', issuer: 'DeepLearning.AI & AWS', url: 'https://coursera.org/verify/CWXWGWKQ847V' },
               { name: 'Introduction to Artificial Intelligence (AI)', issuer: 'IBM', url: 'https://coursera.org/verify/FK73DT2W75NY' },
