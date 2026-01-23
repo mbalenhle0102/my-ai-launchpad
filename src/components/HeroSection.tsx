@@ -1,6 +1,25 @@
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, Download, ChevronDown } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
 
 const HeroSection = () => {
+  const [isResumeDropdownOpen, setIsResumeDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const resumeFormats = [
+    { label: 'PDF Format', path: '/resume/Innocentia_Jiwa_Resume.pdf', icon: '📄' },
+    { label: 'Word Document', path: '/resume/Innocentia_Jiwa_Resume.docx', icon: '📝' },
+    { label: 'Plain Text', path: '/resume/Innocentia_Jiwa_Resume.txt', icon: '📃' },
+  ];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsResumeDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Elements */}
@@ -44,12 +63,33 @@ const HeroSection = () => {
           >
             View My Work
           </a>
-          <a
-            href="#contact"
-            className="px-8 py-3 rounded-full border border-border hover:border-primary/50 text-foreground font-medium transition-all hover:bg-secondary/50"
-          >
-            Download Resume
-          </a>
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setIsResumeDropdownOpen(!isResumeDropdownOpen)}
+              className="px-8 py-3 rounded-full border border-border hover:border-primary/50 text-foreground font-medium transition-all hover:bg-secondary/50 flex items-center gap-2"
+            >
+              <Download size={18} />
+              Download Resume
+              <ChevronDown size={16} className={`transition-transform ${isResumeDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            {isResumeDropdownOpen && (
+              <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-card border border-border rounded-xl shadow-xl overflow-hidden min-w-[200px] z-50">
+                {resumeFormats.map((format) => (
+                  <a
+                    key={format.label}
+                    href={format.path}
+                    download
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 transition-colors text-sm text-foreground"
+                    onClick={() => setIsResumeDropdownOpen(false)}
+                  >
+                    <span>{format.icon}</span>
+                    {format.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Social Links */}
