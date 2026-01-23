@@ -1,4 +1,4 @@
-import { Brain, Database, Code, Cloud, BarChart3, Wrench, GraduationCap } from 'lucide-react';
+import { Brain, Database, Code, Cloud, BarChart3, Wrench, GraduationCap, Monitor } from 'lucide-react';
 
 const skillCategories = [
   {
@@ -49,6 +49,13 @@ const skillCategories = [
     color: 'text-cyan-400',
     bgColor: 'bg-cyan-400/10',
     skills: ['Apache Airflow', 'dbt', 'Great Expectations', 'Tableau', 'Power BI', 'Looker'],
+  },
+  {
+    title: 'IT Technical Support',
+    icon: Monitor,
+    color: 'text-violet-400',
+    bgColor: 'bg-violet-400/10',
+    skills: ['Hardware Troubleshooting', 'Software Installation', 'Network Configuration', 'Operating Systems', 'Help Desk Support', 'System Administration'],
   },
 ];
 
@@ -141,6 +148,7 @@ const SkillsSection = () => {
           <h3 className="text-xl font-semibold text-center mb-8">Certifications & Credentials</h3>
           <div className="flex flex-wrap justify-center gap-4">
             {[
+              { name: 'NQF Level 4: IT Technical Support', issuer: 'MICT SETA (NLRD No. 78964)', url: '#', featured: true },
               { name: 'AI For Everyone', issuer: 'DeepLearning.AI', url: 'https://coursera.org/verify/6Z8TDHYS05AB' },
               { name: 'Generative AI with Large Language Models', issuer: 'DeepLearning.AI & AWS', url: 'https://coursera.org/verify/CWXWGWKQ847V' },
               { name: 'Introduction to Artificial Intelligence (AI)', issuer: 'IBM', url: 'https://coursera.org/verify/FK73DT2W75NY' },
@@ -158,9 +166,15 @@ const SkillsSection = () => {
                 href={cert.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group px-5 py-3 rounded-xl bg-card border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all"
+                className={`group px-5 py-3 rounded-xl border transition-all ${
+                  cert.featured 
+                    ? 'bg-primary/10 border-primary/50 hover:bg-primary/20' 
+                    : 'bg-card border-border/50 hover:border-primary/50 hover:bg-primary/5'
+                }`}
               >
-                <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{cert.name}</div>
+                <div className={`text-sm font-medium transition-colors ${
+                  cert.featured ? 'text-primary' : 'text-foreground group-hover:text-primary'
+                }`}>{cert.name}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{cert.issuer}</div>
               </a>
             ))}
