@@ -1,0 +1,129 @@
+INNOCENTIA MBALENHLE JIWA
+Entry-level AI/ML Engineer | Python, Machine Learning & Data Analysis
+
+================================================================================
+CONTACT INFORMATION
+================================================================================
+Location: 781 Twala Section, Mabona Street, Katlehong, 1431
+LinkedIn: linkedin.com/in/innocentia-jiwa-604b82135
+GitHub: github.com/mbalenhle0102
+Driver's License: C1
+
+================================================================================
+PROFESSIONAL SUMMARY
+================================================================================
+Dedicated IT professional with a strong interest in technical support and 
+end-user assistance. Foundational skills in troubleshooting hardware and 
+software issues, basic networking, and system maintenance. Passionate about 
+AI/ML technologies, data analysis, and creating innovative solutions that 
+make a difference. Eager to provide reliable technical support, learn from 
+real-world challenges, and contribute to efficient IT operations.
+
+================================================================================
+TECHNICAL PROFICIENCIES
+================================================================================
+Programming & AI/ML:
+- Python, TensorFlow, PyTorch, Scikit-learn
+- Natural Language Processing (NLP)
+- Deep Learning, Neural Networks
+- Machine Learning Algorithms
+- Data Analysis & Visualization
+- Pandas, NumPy, Matplotlib
+
+IT Support & Infrastructure:
+- Operating Systems (Windows, Linux)
+- Hardware and Software Support
+- Networking Fundamentals
+- Technical Support & Troubleshooting
+- Cloud Services and Tools
+
+Project Management:
+- Agile Methodology
+- Scrum Framework
+- Risk Management
+- Stakeholder Communication
+- Resource Planning
+- Quality Assurance
+
+Web Development:
+- React, TypeScript
+- Tailwind CSS
+- Vercel Deployment
+- UI/UX Design
+
+================================================================================
+EDUCATION & CERTIFICATIONS
+================================================================================
+NQF Level 4: IT Technical Support
+Jonda Learning Academy | 2016
+NLRD No: 78964
+
+NQF Level 4: Project Management
+Services SETA | January 2025
+SAQA ID: 50080 | Credits: 152 | Certificate No: 00360706
+
+Grade 12 (Matric)
+Rondebult Secondary School | 2012
+
+================================================================================
+WORK EXPERIENCE
+================================================================================
+Administrator
+Phokeng School Clothing and Stationery CC
+January 2018 – December 2022
+
+- Managed administrative operations and documentation
+- Provided customer service and stakeholder communication
+- Handled inventory and resource management
+- Implemented organizational systems for efficiency
+
+================================================================================
+KEY PROJECTS & ACHIEVEMENTS
+================================================================================
+EmotiView - AI Analytics (Capstone Project)
+https://emoti-view.vercel.app
+Advanced sentiment analysis application powered by Gemini 2.5 Flash and NLP.
+Features real-time emotion detection, sarcasm analysis, and confidence metrics.
+Technologies: React, AI/NLP, Gemini API, Vercel
+
+ResumeCraft
+https://resume-craft-zeta.vercel.app
+Modern resume builder with real-time preview and PDF export functionality.
+Technologies: React, TypeScript, PDF Export, UI/UX
+
+Domino AI
+https://domino-ai.vercel.app
+AI-powered knowledge system for mastering Artificial Intelligence concepts
+with interactive learning sequences and academic modules.
+Technologies: AI Education, NLP, React, Vercel
+
+EduGenius AI
+https://edu-genius-ai-orpin.vercel.app
+AI curriculum designer generating lesson plans, study guides, and exams
+with customizable teaching styles and grade levels.
+Technologies: AI Education, LLM, React, Vercel
+
+================================================================================
+SOFT SKILLS
+================================================================================
+- Excellent Communication
+- Problem Solving & Critical Thinking
+- Time Management
+- Strategic Thinking
+- Continuous Learning & Professional Development
+- Team Collaboration
+
+================================================================================
+INTERESTS
+================================================================================
+- Applying new AI/ML technologies
+- Technical problem solving and user support
+- Continuous professional development
+- Building innovative AI solutions
+
+================================================================================
+REFERENCES
+================================================================================
+Available upon request:
+- Boniswa Olga Jiwa: 079 488 3042
+- Vusi Mkhize: 069 266 8917

@@ -1,8 +1,9 @@
-import { ExternalLink, Github, Star, Play, Upload, Filter } from 'lucide-react';
+import { ExternalLink, Github, Star, Play, Upload, Filter, GraduationCap } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import projectDominoAi from '@/assets/project-domino-ai.png';
 import projectResumecraft from '@/assets/project-resumecraft.png';
 import projectEdugenius from '@/assets/project-edugenius.png';
+import projectEmotiview from '@/assets/project-emotiview.png';
 
 interface Project {
   title: string;
@@ -14,9 +15,21 @@ interface Project {
   github: string;
   demo: string;
   demoVideo?: string;
+  isCapstone?: boolean;
 }
 
 const initialProjects: Project[] = [
+  {
+    title: 'EmotiView - AI Analytics',
+    description: 'A capstone project featuring advanced sentiment analysis powered by Gemini 2.5 Flash and NLP. Analyzes text for emotions, sarcasm detection, and confidence levels with real-time dashboard.',
+    image: projectEmotiview,
+    tags: ['AI', 'NLP', 'Sentiment Analysis', 'Gemini', 'React'],
+    featured: true,
+    metrics: 'Sarcasm detection, Multi-emotion analysis',
+    github: 'https://github.com/mbalenhle0102',
+    demo: 'https://emoti-view.vercel.app',
+    isCapstone: true,
+  },
   {
     title: 'ResumeCraft',
     description: 'A modern resume builder application with real-time preview, customizable sections, and PDF export functionality for creating professional resumes.',
@@ -134,7 +147,13 @@ const ProjectsSection = () => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 )}
-                {project.featured && (
+                {project.isCapstone && (
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent/90 text-accent-foreground text-xs font-medium">
+                    <GraduationCap size={12} />
+                    Capstone Project
+                  </div>
+                )}
+                {project.featured && !project.isCapstone && (
                   <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/90 text-primary-foreground text-xs font-medium">
                     <Star size={12} fill="currentColor" />
                     Featured

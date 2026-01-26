@@ -1,5 +1,7 @@
-import { Mail, Linkedin, Github, MapPin, Send } from 'lucide-react';
+import { Linkedin, Github, MapPin, Send, Loader2 } from 'lucide-react';
 import { useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -7,11 +9,27 @@ const ContactSection = () => {
     email: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData,
+      });
+
+      if (error) throw error;
+
+      toast.success('Message sent successfully!');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast.error('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -38,32 +56,6 @@ const ContactSection = () => {
               <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
               
               <div className="space-y-4">
-                <a
-                  href="mailto:mbalijiwa@gmail.com"
-                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors group"
-                >
-                  <div className="p-2.5 rounded-lg bg-primary/10">
-                    <Mail className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground">Personal Email</div>
-                    <div className="text-foreground group-hover:text-primary transition-colors">mbalijiwa@gmail.com</div>
-                  </div>
-                </a>
-
-                <a
-                  href="mailto:innocentia.jiwa@capaciti.org.za"
-                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors group"
-                >
-                  <div className="p-2.5 rounded-lg bg-primary/10">
-                    <Mail className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground">Work Email</div>
-                    <div className="text-foreground group-hover:text-primary transition-colors">innocentia.jiwa@capaciti.org.za</div>
-                  </div>
-                </a>
-
                 <a
                   href="http://www.linkedin.com/in/innocentia-jiwa-604b82135"
                   target="_blank"
@@ -169,10 +161,20 @@ const ContactSection = () => {
               </div>
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all glow-effect"
+                disabled={isSubmitting}
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all glow-effect disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send size={18} />
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
