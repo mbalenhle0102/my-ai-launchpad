@@ -57,6 +57,13 @@ const skillCategories = [
     bgColor: 'bg-violet-400/10',
     skills: ['Hardware Troubleshooting', 'Software Installation', 'Network Configuration', 'Operating Systems', 'Help Desk Support', 'System Administration'],
   },
+  {
+    title: 'Project Management',
+    icon: BarChart3,
+    color: 'text-amber-400',
+    bgColor: 'bg-amber-400/10',
+    skills: ['Agile Methodology', 'Scrum Framework', 'Risk Management', 'Stakeholder Communication', 'Resource Planning', 'Project Scheduling'],
+  },
 ];
 
 const SkillsSection = () => {
