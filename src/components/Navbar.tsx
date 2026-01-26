@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import ThemeSwitcher from './ThemeSwitcher';
+import ProfilePicture from './ProfilePicture';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -28,10 +30,13 @@ const Navbar = () => {
     >
       <div className="section-container">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="#" className="text-xl font-bold gradient-text">
-            Portfolio
-          </a>
+          {/* Profile Picture & Logo */}
+          <div className="flex items-center gap-3">
+            <ProfilePicture />
+            <a href="#" className="text-lg font-bold gradient-text">
+              I.M. Jiwa
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -46,6 +51,7 @@ const Navbar = () => {
             >
               Get in Touch
             </a>
+            <ThemeSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
