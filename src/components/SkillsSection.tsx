@@ -1,4 +1,6 @@
-import { Brain, Database, Code, Cloud, BarChart3, Wrench, GraduationCap, Monitor } from 'lucide-react';
+import { Brain, Database, Code, Cloud, BarChart3, Wrench, GraduationCap, Monitor, Cpu, Layers } from 'lucide-react';
+import { motion } from 'framer-motion';
+import HolographicCard from './HolographicCard';
 
 const skillCategories = [
   {
@@ -45,7 +47,7 @@ const skillCategories = [
   },
   {
     title: 'Data Proficiency',
-    icon: BarChart3,
+    icon: Layers,
     color: 'text-cyan-400',
     bgColor: 'bg-cyan-400/10',
     skills: ['Apache Airflow', 'dbt', 'Great Expectations', 'Tableau', 'Power BI', 'Looker'],
@@ -59,7 +61,7 @@ const skillCategories = [
   },
   {
     title: 'Project Management',
-    icon: BarChart3,
+    icon: Cpu,
     color: 'text-amber-400',
     bgColor: 'bg-amber-400/10',
     skills: ['Agile Methodology', 'Scrum Framework', 'Risk Management', 'Stakeholder Communication', 'Resource Planning', 'Project Scheduling'],
@@ -68,127 +70,163 @@ const skillCategories = [
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="py-24 relative bg-secondary/20">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+    <section id="skills" className="py-24 relative bg-secondary/10">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(185_80%_55%_/_0.03),_transparent_70%)]" />
 
-      <div className="section-container">
+      <div className="section-container relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-primary text-sm font-mono tracking-wider uppercase">Technical Expertise</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="inline-flex items-center gap-2 text-primary text-sm font-mono tracking-wider uppercase mb-3">
+            <Cpu size={14} className="animate-pulse" />
+            Technical Expertise
+          </span>
+          <h2 className="text-2xl md:text-3xl font-bold mt-2 mb-4">
             Skills & <span className="gradient-text">Competencies</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             A comprehensive toolkit for building end-to-end AI/ML solutions
           </p>
-        </div>
+        </motion.div>
 
         {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
             return (
-              <div
+              <motion.div
                 key={category.title}
-                className="glass-card p-6 hover-glow transition-all"
-                style={{ animationDelay: `${index * 100}ms` }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`p-2.5 rounded-lg ${category.bgColor}`}>
-                    <Icon className={`w-5 h-5 ${category.color}`} />
+                <HolographicCard className="glass-card-hover p-6 h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`p-2.5 rounded-xl ${category.bgColor} backdrop-blur-sm`}>
+                      <Icon className={`w-5 h-5 ${category.color}`} />
+                    </div>
+                    <h3 className="font-semibold text-foreground">{category.title}</h3>
                   </div>
-                  <h3 className="font-semibold text-foreground">{category.title}</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill) => (
-                    <span key={skill} className="skill-tag">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill) => (
+                      <span key={skill} className="skill-tag">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </HolographicCard>
+              </motion.div>
             );
           })}
         </div>
 
         {/* Academic Background */}
-        <div className="mt-16">
-          <h3 className="text-xl font-semibold text-center mb-8">Academic Background</h3>
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
-            <div className="glass-card p-6 hover-glow transition-all">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-primary/10">
-                  <GraduationCap className="w-6 h-6 text-primary" />
+        <motion.div 
+          className="mt-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-xl font-semibold text-center mb-8 flex items-center justify-center gap-2">
+            <GraduationCap className="text-primary" />
+            Academic Background
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
+            {[
+              {
+                title: 'NQF Level 4: IT Technical Support',
+                institution: 'Jonda Learning Academy',
+                details: 'NLRD No: 78964',
+                description: 'Comprehensive training in hardware troubleshooting, software installation, network configuration, and IT support services.',
+                color: 'primary',
+              },
+              {
+                title: 'NQF Level 4: Project Management',
+                institution: 'Services SETA',
+                details: 'SAQA ID: 50080 • Credits: 152 • Certificate No: 00360706',
+                description: 'Further Education and Training Certificate in Project Management principles and methodologies.',
+                color: 'accent',
+              },
+            ].map((edu, index) => (
+              <motion.div
+                key={edu.title}
+                className="glass-card-hover p-6"
+                initial={{ opacity: 0, x: index === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 rounded-xl bg-${edu.color}/10`}>
+                    <GraduationCap className={`w-6 h-6 text-${edu.color}`} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">{edu.title}</h4>
+                    <p className="text-muted-foreground text-sm mt-1">{edu.institution}</p>
+                    <p className="text-muted-foreground text-xs mt-1 font-mono">{edu.details}</p>
+                    <p className="text-muted-foreground text-sm mt-2">{edu.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">NQF Level 4: IT Technical Support</h4>
-                  <p className="text-muted-foreground text-sm mt-1">Jonda Learning Academy</p>
-                  <p className="text-muted-foreground text-xs mt-1">NLRD No: 78964</p>
-                  <p className="text-muted-foreground text-sm mt-2">
-                    Comprehensive training in hardware troubleshooting, software installation, network configuration, and IT support services.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="glass-card p-6 hover-glow transition-all">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-accent/10">
-                  <GraduationCap className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">NQF Level 4: Project Management</h4>
-                  <p className="text-muted-foreground text-sm mt-1">Services SETA</p>
-                  <p className="text-muted-foreground text-xs mt-1">SAQA ID: 50080 • Credits: 152</p>
-                  <p className="text-muted-foreground text-xs mt-1">Certificate No: 00360706 • Issued: January 2025</p>
-                  <p className="text-muted-foreground text-sm mt-2">
-                    Further Education and Training Certificate in Project Management principles and methodologies.
-                  </p>
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Certifications */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
           <h3 className="text-xl font-semibold text-center mb-8">Certifications & Credentials</h3>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             {[
-              { name: 'NQF Level 4: IT Technical Support', issuer: 'Jonda Learning Academy (NLRD No. 78964)', url: '#', featured: true },
-              { name: 'NQF Level 4: Project Management', issuer: 'Services SETA (SAQA ID: 50080)', url: '#', featured: true },
+              { name: 'NQF Level 4: IT Technical Support', issuer: 'Jonda Learning Academy', url: '#', featured: true },
+              { name: 'NQF Level 4: Project Management', issuer: 'Services SETA', url: '#', featured: true },
               { name: 'AI For Everyone', issuer: 'DeepLearning.AI', url: 'https://coursera.org/verify/6Z8TDHYS05AB' },
-              { name: 'Generative AI with Large Language Models', issuer: 'DeepLearning.AI & AWS', url: 'https://coursera.org/verify/CWXWGWKQ847V' },
-              { name: 'Introduction to Artificial Intelligence (AI)', issuer: 'IBM', url: 'https://coursera.org/verify/FK73DT2W75NY' },
+              { name: 'Generative AI with LLMs', issuer: 'DeepLearning.AI & AWS', url: 'https://coursera.org/verify/CWXWGWKQ847V' },
+              { name: 'Introduction to AI', issuer: 'IBM', url: 'https://coursera.org/verify/FK73DT2W75NY' },
               { name: 'AI Essentials', issuer: 'Intel', url: 'https://coursera.org/verify/MPPSSF6M5CFU' },
-              { name: 'Python for Data Science, AI & Development', issuer: 'IBM', url: 'https://coursera.org/verify/QDIFKKXJSXVL' },
-              { name: 'Trustworthy AI: Managing Bias, Ethics, and Accountability', issuer: 'Johns Hopkins University', url: 'https://coursera.org/verify/VBXM9VSA25S7' },
-              { name: 'Building AI Powered Chatbots Without Programming', issuer: 'IBM', url: 'https://coursera.org/verify/WEMVKSCB826I' },
-              { name: 'AI Foundations: Prompt Engineering with ChatGPT', issuer: 'Arizona State University', url: 'https://coursera.org/verify/YCRVFPWOU7XB' },
+              { name: 'Python for Data Science', issuer: 'IBM', url: 'https://coursera.org/verify/QDIFKKXJSXVL' },
+              { name: 'Trustworthy AI', issuer: 'Johns Hopkins', url: 'https://coursera.org/verify/VBXM9VSA25S7' },
+              { name: 'AI Chatbots', issuer: 'IBM', url: 'https://coursera.org/verify/WEMVKSCB826I' },
+              { name: 'Prompt Engineering', issuer: 'ASU', url: 'https://coursera.org/verify/YCRVFPWOU7XB' },
               { name: 'Generative AI for Everyone', issuer: 'DeepLearning.AI', url: 'https://coursera.org/verify/YQL8J5Y10VY5' },
-              { name: 'Introduction to Generative AI', issuer: 'Google Cloud', url: 'https://coursera.org/verify/YT5U7IWAHHO6' },
-              { name: 'Artificial Intelligence on Microsoft Azure', issuer: 'Microsoft', url: 'https://coursera.org/verify/ZAC3RRQH7RD1' },
-            ].map((cert) => (
-              <a
+              { name: 'Intro to Generative AI', issuer: 'Google Cloud', url: 'https://coursera.org/verify/YT5U7IWAHHO6' },
+              { name: 'AI on Microsoft Azure', issuer: 'Microsoft', url: 'https://coursera.org/verify/ZAC3RRQH7RD1' },
+            ].map((cert, index) => (
+              <motion.a
                 key={cert.name}
                 href={cert.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group px-5 py-3 rounded-xl border transition-all ${
+                className={`group px-4 py-3 rounded-xl border transition-all duration-300 ${
                   cert.featured 
-                    ? 'bg-primary/10 border-primary/50 hover:bg-primary/20' 
-                    : 'bg-card border-border/50 hover:border-primary/50 hover:bg-primary/5'
+                    ? 'bg-gradient-to-br from-primary/10 to-accent/10 border-primary/40 hover:border-primary hover:shadow-lg hover:shadow-primary/20' 
+                    : 'bg-card/50 border-border/50 hover:border-primary/40 hover:bg-primary/5'
                 }`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.02 }}
+                whileHover={{ y: -2 }}
               >
                 <div className={`text-sm font-medium transition-colors ${
                   cert.featured ? 'text-primary' : 'text-foreground group-hover:text-primary'
                 }`}>{cert.name}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{cert.issuer}</div>
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,172 +1,133 @@
 import { useState, useEffect } from 'react';
 import { Palette, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-type ThemeName = 'cyber' | 'charcoal' | 'slate';
-
-interface Theme {
-  name: ThemeName;
-  label: string;
-  description: string;
-  preview: {
-    bg: string;
-    accent: string;
-  };
-}
-
-const themes: Theme[] = [
+const themes = [
   {
-    name: 'cyber',
-    label: 'Cyber Navy',
-    description: 'Dark Navy with Neon Cyan',
-    preview: { bg: '#0F172A', accent: '#22D3EE' }
+    id: 'default',
+    name: 'Cyber Navy',
+    description: 'Neon Cyan on Dark Navy',
+    colors: {
+      bg: '#0F172A',
+      primary: '#22D3EE',
+    },
   },
   {
-    name: 'charcoal',
-    label: 'Charcoal & Sulphur',
-    description: 'High contrast with Deep Yellow',
-    preview: { bg: '#121212', accent: '#EAB308' }
+    id: 'charcoal',
+    name: 'Charcoal & Sulphur',
+    description: 'High Contrast Yellow',
+    colors: {
+      bg: '#121212',
+      primary: '#EAB308',
+    },
   },
   {
-    name: 'slate',
-    label: 'Slate & Silver',
-    description: 'Minimalist Blue-Gray',
-    preview: { bg: '#1E293B', accent: '#94A3B8' }
-  }
+    id: 'slate',
+    name: 'Slate & Silver',
+    description: 'Minimalist Elegance',
+    colors: {
+      bg: '#1E293B',
+      primary: '#94A3B8',
+    },
+  },
 ];
 
 const ThemeSwitcher = () => {
-  const [currentTheme, setCurrentTheme] = useState<ThemeName>('cyber');
   const [isOpen, setIsOpen] = useState(false);
+  const [activeTheme, setActiveTheme] = useState('default');
 
   useEffect(() => {
-    const saved = localStorage.getItem('portfolio-theme') as ThemeName;
-    if (saved && themes.some(t => t.name === saved)) {
-      setCurrentTheme(saved);
-      applyTheme(saved);
-    }
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'default';
+    setActiveTheme(savedTheme);
+    applyTheme(savedTheme);
   }, []);
 
-  const applyTheme = (themeName: ThemeName) => {
+  const applyTheme = (themeId: string) => {
     const root = document.documentElement;
+    root.classList.remove('theme-charcoal', 'theme-slate');
     
-    switch (themeName) {
-      case 'cyber':
-        // Dark Navy with Neon Cyan
-        root.style.setProperty('--background', '222 47% 11%');
-        root.style.setProperty('--foreground', '210 40% 98%');
-        root.style.setProperty('--card', '222 47% 13%');
-        root.style.setProperty('--card-foreground', '210 40% 98%');
-        root.style.setProperty('--secondary', '217 33% 17%');
-        root.style.setProperty('--secondary-foreground', '210 40% 90%');
-        root.style.setProperty('--muted', '217 33% 14%');
-        root.style.setProperty('--muted-foreground', '215 20% 55%');
-        root.style.setProperty('--primary', '185 84% 53%');
-        root.style.setProperty('--primary-foreground', '222 47% 11%');
-        root.style.setProperty('--accent', '265 70% 60%');
-        root.style.setProperty('--accent-foreground', '210 40% 98%');
-        root.style.setProperty('--border', '217 33% 20%');
-        root.style.setProperty('--ring', '185 84% 53%');
-        break;
-        
-      case 'charcoal':
-        // Material Dark Gray with Deep Yellow
-        root.style.setProperty('--background', '0 0% 7%');
-        root.style.setProperty('--foreground', '0 0% 100%');
-        root.style.setProperty('--card', '0 0% 10%');
-        root.style.setProperty('--card-foreground', '0 0% 100%');
-        root.style.setProperty('--secondary', '0 0% 14%');
-        root.style.setProperty('--secondary-foreground', '0 0% 90%');
-        root.style.setProperty('--muted', '0 0% 12%');
-        root.style.setProperty('--muted-foreground', '0 0% 60%');
-        root.style.setProperty('--primary', '45 92% 47%');
-        root.style.setProperty('--primary-foreground', '0 0% 7%');
-        root.style.setProperty('--accent', '38 92% 50%');
-        root.style.setProperty('--accent-foreground', '0 0% 100%');
-        root.style.setProperty('--border', '0 0% 18%');
-        root.style.setProperty('--ring', '45 92% 47%');
-        break;
-        
-      case 'slate':
-        // Slate Blue-Gray Minimalist
-        root.style.setProperty('--background', '217 33% 17%');
-        root.style.setProperty('--foreground', '210 40% 98%');
-        root.style.setProperty('--card', '215 28% 22%');
-        root.style.setProperty('--card-foreground', '210 40% 98%');
-        root.style.setProperty('--secondary', '215 25% 27%');
-        root.style.setProperty('--secondary-foreground', '210 40% 90%');
-        root.style.setProperty('--muted', '215 25% 23%');
-        root.style.setProperty('--muted-foreground', '215 15% 60%');
-        root.style.setProperty('--primary', '215 20% 65%');
-        root.style.setProperty('--primary-foreground', '217 33% 17%');
-        root.style.setProperty('--accent', '215 25% 50%');
-        root.style.setProperty('--accent-foreground', '210 40% 98%');
-        root.style.setProperty('--border', '215 20% 30%');
-        root.style.setProperty('--ring', '215 20% 65%');
-        break;
+    if (themeId === 'charcoal') {
+      root.classList.add('theme-charcoal');
+    } else if (themeId === 'slate') {
+      root.classList.add('theme-slate');
     }
   };
 
-  const handleThemeChange = (themeName: ThemeName) => {
-    setCurrentTheme(themeName);
-    applyTheme(themeName);
-    localStorage.setItem('portfolio-theme', themeName);
+  const handleThemeChange = (themeId: string) => {
+    setActiveTheme(themeId);
+    applyTheme(themeId);
+    localStorage.setItem('portfolio-theme', themeId);
     setIsOpen(false);
   };
 
   return (
     <div className="relative">
-      <button
+      <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2.5 rounded-full bg-secondary/80 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+        className="p-2.5 rounded-xl bg-secondary/50 backdrop-blur-xl border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
         aria-label="Change theme"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
         <Palette size={18} />
-      </button>
+      </motion.button>
 
-      {isOpen && (
-        <>
-          <div 
-            className="fixed inset-0 z-40" 
-            onClick={() => setIsOpen(false)}
-          />
-          <div className="absolute right-0 top-full mt-2 w-64 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50">
-            <div className="p-3 border-b border-border/50">
-              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Color Theme</span>
-            </div>
-            <div className="p-2">
-              {themes.map((theme) => (
-                <button
-                  key={theme.name}
-                  onClick={() => handleThemeChange(theme.name)}
-                  className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${
-                    currentTheme === theme.name 
-                      ? 'bg-primary/10 text-primary' 
-                      : 'hover:bg-secondary/80 text-foreground'
-                  }`}
-                >
-                  <div className="flex gap-1">
-                    <div 
-                      className="w-4 h-4 rounded-full border border-border/50"
-                      style={{ backgroundColor: theme.preview.bg }}
-                    />
-                    <div 
-                      className="w-4 h-4 rounded-full border border-border/50"
-                      style={{ backgroundColor: theme.preview.accent }}
-                    />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <div className="text-sm font-medium">{theme.label}</div>
-                    <div className="text-xs text-muted-foreground">{theme.description}</div>
-                  </div>
-                  {currentTheme === theme.name && (
-                    <Check size={16} className="text-primary" />
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
-        </>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40"
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 10 }}
+              className="absolute right-0 top-full mt-3 z-50 w-72 p-4 rounded-2xl bg-card/95 backdrop-blur-2xl border border-border/50 shadow-2xl"
+            >
+              <h4 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+                <Palette size={14} className="text-primary" />
+                Theme Settings
+              </h4>
+              <div className="space-y-2">
+                {themes.map((theme) => (
+                  <motion.button
+                    key={theme.id}
+                    onClick={() => handleThemeChange(theme.id)}
+                    className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all ${
+                      activeTheme === theme.id
+                        ? 'bg-primary/10 border border-primary/40'
+                        : 'hover:bg-secondary/50 border border-transparent'
+                    }`}
+                    whileHover={{ x: 2 }}
+                  >
+                    <div className="flex gap-1">
+                      <div
+                        className="w-5 h-5 rounded-lg border border-border/50"
+                        style={{ backgroundColor: theme.colors.bg }}
+                      />
+                      <div
+                        className="w-5 h-5 rounded-lg"
+                        style={{ backgroundColor: theme.colors.primary }}
+                      />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="text-sm font-medium text-foreground">{theme.name}</div>
+                      <div className="text-xs text-muted-foreground">{theme.description}</div>
+                    </div>
+                    {activeTheme === theme.id && (
+                      <Check size={16} className="text-primary" />
+                    )}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
