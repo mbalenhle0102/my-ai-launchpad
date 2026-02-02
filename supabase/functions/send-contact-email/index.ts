@@ -11,6 +11,16 @@ interface ContactRequest {
   message: string;
 }
 
+// HTML escape function to prevent XSS attacks
+const escapeHtml = (unsafe: string): string => {
+  return unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
+
 Deno.serve(async (req: Request) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -56,13 +66,13 @@ Deno.serve(async (req: Request) => {
       body: JSON.stringify({
         from: 'Portfolio Contact <onboarding@resend.dev>',
         to: ['innocentia.jiwa@capaciti.org.za'],
-        subject: `Portfolio Contact: ${name}`,
+        subject: `Portfolio Contact: ${escapeHtml(name)}`,
         html: `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
           <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, '<br>')}</p>
+          <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
         `,
         reply_to: email,
       }),
