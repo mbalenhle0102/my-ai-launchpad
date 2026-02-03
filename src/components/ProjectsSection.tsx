@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Star, Play, Upload, Filter, GraduationCap, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Star, Filter, GraduationCap, Sparkles, DollarSign } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import projectDominoAi from '@/assets/project-domino-ai.png';
@@ -16,11 +16,10 @@ interface Project {
   metrics: string;
   github: string;
   demo: string;
-  demoVideo?: string;
   isCapstone?: boolean;
 }
 
-const initialProjects: Project[] = [
+const projects: Project[] = [
   {
     title: 'EmotiView - AI Analytics',
     description: 'A capstone project featuring advanced sentiment analysis powered by Gemini 2.5 Flash and NLP. Analyzes text for emotions, sarcasm detection, and confidence levels with real-time dashboard.',
@@ -31,6 +30,16 @@ const initialProjects: Project[] = [
     github: 'https://github.com/mbalenhle0102',
     demo: 'https://emoti-view.vercel.app',
     isCapstone: true,
+  },
+  {
+    title: 'FinTrack Pro',
+    description: 'A smart finance tracker with real-time dashboard insights, spending trends, budget management, and security audit features. Built with modern UI/UX principles.',
+    image: '/placeholder.svg',
+    tags: ['Finance', 'React', 'TypeScript', 'Dashboard'],
+    featured: true,
+    metrics: 'Budget tracking, Spending analytics',
+    github: 'https://github.com/mbalenhle0102',
+    demo: 'https://smart-finance-tracker-seven.vercel.app/',
   },
   {
     title: 'ResumeCraft',
@@ -65,12 +74,11 @@ const initialProjects: Project[] = [
 ];
 
 const ProjectsSection = () => {
-  const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [activeFilter, setActiveFilter] = useState<string>('All');
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
-    initialProjects.forEach(project => {
+    projects.forEach(project => {
       project.tags.forEach(tag => tags.add(tag));
     });
     return ['All', ...Array.from(tags).sort()];
@@ -79,18 +87,7 @@ const ProjectsSection = () => {
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return projects;
     return projects.filter(project => project.tags.includes(activeFilter));
-  }, [projects, activeFilter]);
-
-  const handleVideoUpload = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const videoUrl = URL.createObjectURL(file);
-      const projectTitle = filteredProjects[index].title;
-      setProjects(prev => prev.map((project) => 
-        project.title === projectTitle ? { ...project, demoVideo: videoUrl } : project
-      ));
-    }
-  };
+  }, [activeFilter]);
 
   return (
     <section id="projects" className="py-24 relative">
@@ -155,21 +152,13 @@ const ProjectsSection = () => {
               transition={{ delay: index * 0.1 }}
             >
               <HolographicCard className="glass-card-hover flex flex-col h-full overflow-hidden">
-                {/* Project Image/Video */}
+                {/* Project Image */}
                 <div className="relative aspect-video overflow-hidden bg-secondary">
-                  {project.demoVideo ? (
-                    <video
-                      src={project.demoVideo}
-                      controls
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-                    />
-                  )}
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                  />
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-60" />
                   
@@ -239,27 +228,6 @@ const ProjectsSection = () => {
                       <ExternalLink size={16} />
                       Live Demo
                     </motion.a>
-                    
-                    {/* Upload Demo Video */}
-                    <label className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer ml-auto">
-                      <input
-                        type="file"
-                        accept="video/*"
-                        className="hidden"
-                        onChange={(e) => handleVideoUpload(index, e)}
-                      />
-                      {project.demoVideo ? (
-                        <>
-                          <Play size={16} className="text-emerald-400" />
-                          <span className="text-emerald-400">Video Added</span>
-                        </>
-                      ) : (
-                        <>
-                          <Upload size={16} />
-                          Upload Demo
-                        </>
-                      )}
-                    </label>
                   </div>
                 </div>
               </HolographicCard>
