@@ -1,10 +1,11 @@
-import { ExternalLink, Github, Star, Filter, GraduationCap, Sparkles, DollarSign } from 'lucide-react';
+import { ExternalLink, Github, Star, Filter, GraduationCap, Sparkles } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import projectDominoAi from '@/assets/project-domino-ai.png';
 import projectResumecraft from '@/assets/project-resumecraft.png';
 import projectEdugenius from '@/assets/project-edugenius.png';
 import projectEmotiview from '@/assets/project-emotiview.png';
+import projectFintrack from '@/assets/project-fintrack.png';
 import HolographicCard from './HolographicCard';
 
 interface Project {
@@ -34,7 +35,7 @@ const projects: Project[] = [
   {
     title: 'FinTrack Pro',
     description: 'A smart finance tracker with real-time dashboard insights, spending trends, budget management, and security audit features. Built with modern UI/UX principles.',
-    image: '/placeholder.svg',
+    image: projectFintrack,
     tags: ['Finance', 'React', 'TypeScript', 'Dashboard'],
     featured: true,
     metrics: 'Budget tracking, Spending analytics',
